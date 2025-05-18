@@ -1,0 +1,371 @@
+/* Mac OS Synth CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: #3b6ea5; /* Classic blue Mac background */
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEklEQVQImWNgYGD4z0AswK4SAFXuAf8EPy+xAAAAAElFTkSuQmCC');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: #000;
+}
+
+.desktop {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    min-height: 600px;
+}
+
+.window {
+    background-color: #d9d9d9;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+#synth-window {
+    z-index: 1;
+}
+
+.song-player-window {
+    width: 350px;
+    align-self: center;
+    position: relative;
+    z-index: 2;
+}
+
+.title-bar {
+    background: linear-gradient(to right, #cccccc, #999999);
+    height: 22px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-bottom: 1px solid #888;
+    cursor: grab; /* Show grab cursor to indicate draggable */
+}
+
+.title-bar:active {
+    cursor: grabbing;
+}
+
+.window.dragging {
+    opacity: 0.9;
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+.title-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.close-button, .minimize-button, .zoom-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    background-color: #ff5f57;
+}
+
+.minimize-button {
+    background-color: #ffbd2e;
+}
+
+.zoom-button {
+    background-color: #28c940;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.window-body {
+    padding: 15px;
+    background-color: #d9d9d9;
+}
+
+/* Control Panel */
+.control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #aaa;
+}
+
+.control-group {
+    background-color: #cecece;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.effects-group {
+    width: 100%;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.control-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    flex: 1;
+}
+
+.slider-container label {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #b3b3b3;
+    border-radius: 3px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #666;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Keyboard */
+.keyboard-container {
+    margin: 15px 0;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #b8b8b8;
+}
+
+#keyboard {
+    position: relative;
+    height: 150px;
+    width: 100%;
+}
+
+.key {
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.1s;
+}
+
+.key.white {
+    position: relative;
+    float: left;
+    width: 12.5%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #888;
+    border-radius: 0 0 4px 4px;
+    z-index: 1;
+}
+
+.key.black {
+    position: absolute;
+    width: 8%;
+    height: 65%;
+    background-color: #000;
+    border: 1px solid #444;
+    border-radius: 0 0 4px 4px;
+    z-index: 2;
+    top: 0;
+}
+
+.key.active {
+    background-color: #7cb3ff;
+}
+
+.key.white.active {
+    background-color: #99ccff;
+}
+
+/* Sound Modes Panel */
+.sound-modes-panel {
+    background-color: #cecece;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.sound-modes-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.sound-modes-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sound-mode-button {
+    background-color: #c0c0c0;
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+}
+
+.sound-mode-button.active {
+    background-color: #7cb3ff;
+    color: #000;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.sound-mode-button:hover {
+    background-color: #d0d0d0;
+}
+
+.sound-mode-button:active {
+    background-color: #a0a0a0;
+}
+
+/* Song Player Styles */
+.song-player {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.song-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.song-selection label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.song-selection select {
+    font-family: 'VT323', monospace;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #e8e8e8;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+.song-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.song-controls button {
+    background-color: #c0c0c0;
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 5px 15px;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.song-controls button:hover {
+    background-color: #d0d0d0;
+}
+
+.song-controls button:active {
+    background-color: #a0a0a0;
+}
+
+.song-controls button:disabled {
+    background-color: #d0d0d0;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.song-info {
+    background-color: #e8e8e8;
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 14px;
+    min-height: 50px;
+}
+
+#now-playing {
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+#song-progress {
+    height: 5px;
+    background-color: #b3b3b3;
+    margin-top: 5px;
+    position: relative;
+}
+
+#song-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #7cb3ff;
+    transition: width 0.1s linear;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sound-modes-buttons {
+        flex-direction: column;
+    }
+    
+    .sound-mode-button {
+        width: 100%;
+    }
+    
+    .song-player-window {
+        width: 100%;
+    }
+} 

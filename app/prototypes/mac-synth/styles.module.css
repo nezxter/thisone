@@ -1,0 +1,364 @@
+/* Mac OS Synth CSS */
+.rootContainer {
+    font-family: 'VT323', monospace;
+    background-color: #3b6ea5; /* Classic blue Mac background */
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEklEQVQImWNgYGD4z0AswK4SAFXuAf8EPy+xAAAAAElFTkSuQmCC');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: #000;
+}
+
+.desktop {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    min-height: 600px;
+}
+
+.window {
+    background-color: #d9d9d9;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.synthWindow {
+    z-index: 1;
+}
+
+.songPlayerWindow {
+    width: 350px;
+    align-self: center;
+    position: relative;
+    z-index: 2;
+}
+
+.titleBar {
+    background: linear-gradient(to right, #cccccc, #999999);
+    height: 22px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-bottom: 1px solid #888;
+    cursor: grab; /* Show grab cursor to indicate draggable */
+}
+
+.titleBar:active {
+    cursor: grabbing;
+}
+
+.window.dragging {
+    opacity: 0.9;
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+.titleButtons {
+    display: flex;
+    gap: 6px;
+}
+
+.closeButton, .minimizeButton, .zoomButton {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+    background-color: #ff5f57;
+}
+
+.minimizeButton {
+    background-color: #ffbd2e;
+}
+
+.zoomButton {
+    background-color: #28c940;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.windowBody {
+    padding: 15px;
+    background-color: #d9d9d9;
+}
+
+/* Control Panel */
+.controlPanel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #aaa;
+}
+
+.controlGroup {
+    background-color: #cecece;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.effectsGroup {
+    width: 100%;
+}
+
+.controlGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.controlOptions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.sliderContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    flex: 1;
+}
+
+.sliderContainer label {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #b3b3b3;
+    border-radius: 3px;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #666;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Keyboard */
+.keyboardContainer {
+    margin: 15px 0;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #b8b8b8;
+}
+
+.keyboard {
+    position: relative;
+    height: 150px;
+    width: 100%;
+}
+
+.key {
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.1s;
+}
+
+.whiteKey {
+    position: relative;
+    float: left;
+    width: 12.5%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #888;
+    border-radius: 0 0 4px 4px;
+    z-index: 1;
+}
+
+.blackKey {
+    position: absolute;
+    width: 8%;
+    height: 65%;
+    background-color: #000;
+    border: 1px solid #444;
+    border-radius: 0 0 4px 4px;
+    z-index: 2;
+    top: 0;
+}
+
+.active {
+    background-color: #7cb3ff !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) inset !important;
+    transform: translateY(1px) !important;
+}
+
+.whiteKey.active {
+    background-color: #99ccff !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) inset !important;
+}
+
+.blackKey.active {
+    background-color: #3c6cb5 !important;
+}
+
+/* Sound Modes Panel */
+.soundModesPanel {
+    background-color: #cecece;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.soundModesTitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.soundModesButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.soundModeButton {
+    background-color: #c0c0c0;
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.soundModeButton.active {
+    background-color: #99ccff !important;
+    border-color: #5a95e0 !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) inset !important;
+}
+
+.soundModeButton:hover {
+    background-color: #d0d0d0;
+}
+
+.soundModeButton:active {
+    background-color: #b0b0b0;
+}
+
+/* Song Player */
+.songPlayer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.songSelection {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.songSelection label {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.songSelection select {
+    padding: 5px;
+    border: 1px solid #888;
+    border-radius: 3px;
+    background-color: #c0c0c0;
+    font-family: 'VT323', monospace;
+}
+
+.songControls {
+    display: flex;
+    gap: 10px;
+}
+
+.songControls button {
+    background-color: #c0c0c0;
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-family: 'VT323', monospace;
+    cursor: pointer;
+    flex: 1;
+}
+
+.songControls button:hover {
+    background-color: #d0d0d0;
+}
+
+.songControls button:active {
+    background-color: #b0b0b0;
+}
+
+.songControls button:disabled {
+    background-color: #e0e0e0;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.songInfo {
+    background-color: #c0c0c0;
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.nowPlaying {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.songProgress {
+    height: 6px;
+    background-color: #888;
+    border-radius: 3px;
+    position: relative;
+}
+
+.songProgress::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #99ccff;
+    border-radius: 3px;
+    width: 0; /* Will be updated by JS */
+}
+
+@media (max-width: 768px) {
+    .soundModesButtons {
+        flex-direction: column;
+    }
+    .soundModeButton {
+        width: 100%;
+    }
+    .songPlayerWindow {
+        width: 100%;
+    }
+} 

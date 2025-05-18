@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac OS Synth</title>
+    <link rel="stylesheet" href="styles.css?v=1.3">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+    <div class="desktop">
+        <!-- Main Synth Window -->
+        <div class="window" id="synth-window">
+            <div class="title-bar">
+                <div class="title-buttons">
+                    <div class="close-button"></div>
+                    <div class="minimize-button"></div>
+                    <div class="zoom-button"></div>
+                </div>
+                <div class="title">Mac OS Synth</div>
+            </div>
+            
+            <div class="window-body">
+                <div class="control-panel">
+                    <div class="control-group effects-group">
+                        <label>Effects</label>
+                        <div class="control-options">
+                            <div class="slider-container">
+                                <label>Delay</label>
+                                <input type="range" min="0" max="1" step="0.01" value="0" id="delay-control">
+                            </div>
+                            <div class="slider-container">
+                                <label>Reverb</label>
+                                <input type="range" min="0" max="1" step="0.01" value="0" id="reverb-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="keyboard-container">
+                    <div id="keyboard">
+                        <!-- White keys -->
+                        <div class="key white" data-note="C4"></div>
+                        <div class="key white" data-note="D4"></div>
+                        <div class="key white" data-note="E4"></div>
+                        <div class="key white" data-note="F4"></div>
+                        <div class="key white" data-note="G4"></div>
+                        <div class="key white" data-note="A4"></div>
+                        <div class="key white" data-note="B4"></div>
+                        <div class="key white" data-note="C5"></div>
+                        
+                        <!-- Black keys -->
+                        <div class="key black" data-note="C#4" style="left: 6.5%;"></div>
+                        <div class="key black" data-note="D#4" style="left: 18.5%;"></div>
+                        <div class="key black" data-note="F#4" style="left: 43.5%;"></div>
+                        <div class="key black" data-note="G#4" style="left: 56.5%;"></div>
+                        <div class="key black" data-note="A#4" style="left: 68.5%;"></div>
+                    </div>
+                </div>
+                
+                <div class="sound-modes-panel">
+                    <div class="sound-modes-title">Sound Mode</div>
+                    <div class="sound-modes-buttons">
+                        <button class="sound-mode-button" data-mode="retro-game">Retro Game</button>
+                        <button class="sound-mode-button" data-mode="soft-keys">Soft Keys</button>
+                        <button class="sound-mode-button" data-mode="dreamy">Dreamy</button>
+                        <button class="sound-mode-button" data-mode="sharp">Sharp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Song Player Window -->
+        <div class="window song-player-window" id="song-window">
+            <div class="title-bar">
+                <div class="title-buttons">
+                    <div class="close-button"></div>
+                    <div class="minimize-button"></div>
+                    <div class="zoom-button"></div>
+                </div>
+                <div class="title">Song Player</div>
+            </div>
+            
+            <div class="window-body">
+                <div class="song-player">
+                    <div class="song-selection">
+                        <label>Choose a song:</label>
+                        <select id="song-select">
+                            <option value="">Select a song...</option>
+                            <option value="game-theme">Super Mario Bros Theme</option>
+                            <option value="simple-scale">Simple Scale</option>
+                        </select>
+                    </div>
+                    
+                    <div class="song-controls">
+                        <button id="play-button" disabled>Play</button>
+                        <button id="stop-button" disabled>Stop</button>
+                    </div>
+                    
+                    <div class="song-info">
+                        <div id="now-playing">No song selected</div>
+                        <div id="song-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="synth.js?v=1.3"></script>
+</body>
+</html> 
